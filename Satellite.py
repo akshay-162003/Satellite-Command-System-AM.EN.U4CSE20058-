@@ -1,6 +1,5 @@
 import logging
 
-# Setting up logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -29,14 +28,12 @@ class Satellite:
         if self.solar_panels_status == "Active":
             self.data_collected += 10
 
-
-# Example usage with multiple lines of user input:
 if __name__ == "__main__":
     try:
         satellite = Satellite()
 
         while True:
-            # Get user input for commands
+            
             user_input = input("Enter a command (rotate(direction), activatePanels(), deactivatePanels(), collectData()) or 'exit': ")
 
             if user_input.lower() == 'exit':
@@ -46,12 +43,12 @@ if __name__ == "__main__":
 
             for command in commands:
                 try:
-                    # Split command and arguments
+                    
                     parts = command.strip(')').split('(')
                     cmd = parts[0]
                     args = parts[1] if len(parts) > 1 else None
 
-                    # Execute the command with arguments if present
+                    
                     if args:
                         getattr(satellite, cmd)(args)
                     else:
@@ -59,7 +56,7 @@ if __name__ == "__main__":
                 except Exception as e:
                     logger.warning(f"Invalid command: {command}. Skipping. Error: {e}")
 
-            # Display current state
+            
             print(f'Orientation: "{satellite.orientation}"\n'
                   f'Solar Panels: "{satellite.solar_panels_status}"\n'
                   f'Data Collected: {satellite.data_collected}')
